@@ -29,6 +29,7 @@ function setup() {
   //createCanvas(400, 400);
   noCanvas();
   //frameRate(1/4);
+  fullscreen(true);
   
   /*setInterval(function(){ 
     newAffirmation = affirmationsArray[Math.floor(Math.random()*affirmationsArray.length)];
