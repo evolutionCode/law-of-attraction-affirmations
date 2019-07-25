@@ -1,4 +1,5 @@
 let affirmations;
+let randomMusic;
 
 //affirmation slider variables
 let sliderRate, sliderPan, sliderVolume;
@@ -11,6 +12,8 @@ let newMusic;
 
 let affirmationsArray = ["1.mp3", "2.mp3", "3.mp3"];
 let loadedAffirmations = [];
+
+let button;
 
 let musicArray = ["kalaido-hanging-lanterns.mp3", "joakim-karud-dreams.mp3", "sugiwa-almost-home.mp3"];
 var loadedMusic = [];
@@ -29,7 +32,6 @@ function setup() {
   //createCanvas(400, 400);
   noCanvas();
   //frameRate(1/4);
-  fullscreen(true);
   
   /*setInterval(function(){ 
     newAffirmation = affirmationsArray[Math.floor(Math.random()*affirmationsArray.length)];
@@ -58,6 +60,13 @@ function setup() {
   createElement("p", "Affirmation Volume");
   sliderVolume = createSlider(0.0, 2.0, 1, 0.01);
   
+  createElement("p", "Fullscreen Button");
+  button = createButton("Fullscreen");
+  button.mousePressed(fullScreenMode);
+  
+  nextMusic();
+  nextAffirmation();
+  
   //loadedMusic[0].loop();
   //loadedMusic[0].setVolume(0.1);
   
@@ -66,9 +75,6 @@ function setup() {
     newAffirmation.play();
     newAffirmation.setVolume(sliderVolume.value());
   }, 3000); */
-
-  nextMusic();
-  nextAffirmation();
   
 } // end of setup function
 
@@ -85,13 +91,29 @@ function draw() {
 }
 
 function nextMusic() {
-    newMusic = loadedMusic[Math.floor(Math.random()*loadedMusic.length)];
+    /*newMusic = loadedMusic[Math.floor(Math.random()*loadedMusic.length)];
     newMusic.play();
-    newMusic.onended(nextMusic);
+    newMusic.onended(nextMusic);*/
+  
+    randomMusic = musicArray[Math.floor(Math.random()*musicArray.length)];
+    newMusic = loadSound('music/chill/' + randomMusic, () => {
+      newMusic.play();
+      newMusic.onended(nextMusic);
+    });
+  
   }
 
 function nextAffirmation() {
     newAffirmation = loadedAffirmations[Math.floor(Math.random()*loadedAffirmations.length)];
     newAffirmation.play();
     newAffirmation.onended(nextAffirmation);
+}
+function fullScreenMode(){
+  let fs = fullscreen();
+  fullscreen(!fs); 
+  if(!fs){
+    button.html("No Fullscreen");
+  }else{
+    button.html("Fullscreen");
+  }
 }
