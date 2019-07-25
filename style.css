@@ -13,7 +13,7 @@ p{
   font-weight: bold;
   color: cyan;
 }
-/*input[type=range]{
+input[type=range]{
   width: 80%;
   height: 15px;
   -webkit-appearance:none;
@@ -38,4 +38,4 @@ input[type=range]::-webkit-slider-thumb:hover{
 input[type=range]:active::-webkit-slider-thumb{
   box-shadow: 0 0 0 3px #00cc66,
               0 0 0 6px white;
-}*/
+}
