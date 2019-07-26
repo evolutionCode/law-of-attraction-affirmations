@@ -23,9 +23,9 @@ function preload(){
     loadedAffirmations.push(loadSound("affirmations/" + data));
   });
   
-  musicArray.forEach((music) => {
+  /*musicArray.forEach((music) => {
     loadedMusic.push(loadSound("./music/chill/" + music));
-  });
+  }); */
 }
 
 function setup() {
